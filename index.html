@@ -45,14 +45,14 @@
         function createHearts() {
             const heartSize = 50;
             
-            for (let i = 0; i < 15; i++) {
+            // Create hearts function
+            function createHeart() {
                 let heart = document.createElement("div");
                 heart.classList.add("hearts");
                 heart.innerHTML = "❤️";
                 
                 // Random position across the full screen width
                 const x = Math.random() * (window.innerWidth - heartSize);
-                // Start from bottom of the screen
                 const y = -heartSize;
                 
                 heart.style.left = x + "px";
@@ -65,8 +65,13 @@
                 heart.addEventListener('animationend', () => heart.remove());
             }
 
-            // Create new hearts every few seconds
-            setTimeout(createHearts, 3000);
+            // Initial hearts
+            for (let i = 0; i < 15; i++) {
+                createHeart();
+            }
+
+            // Create new hearts every 200ms
+            const heartInterval = setInterval(createHeart, 200);
         }
     </script>
 </body>
